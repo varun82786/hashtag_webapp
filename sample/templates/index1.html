@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Instagram Hashtag Generator</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-DmE6Wu2FOTJRsL0sqqwT62EeOrhBnPfmk9PiNcNVMeUvC2D6iZ0P1g7EJwMfoU2t" crossorigin="anonymous">
+	<!-- Custom CSS -->
+	<style>
+		body {
+			padding-top: 5rem;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">Instagram Hashtag Generator</a>
+		</div>
+	</nav>
+	<div class="container">
+		{% for hashtag in hashtags %}
+		<p>{{ hashtag }}</p>
+	    {% endfor %}
+	</div>
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-+NTgQ2c+OBOYVK85zhdhKjfg3Gk9B4Zg4Ktn1sW0J+N7Q2ee41KlQ2JBDd86kEMX" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+V/ZDtbKTaLrBfJgUsCjPgPqoN6hjrJwjlw0w3" crossorigin="anonymous"></script>
+</body>
+</html>
