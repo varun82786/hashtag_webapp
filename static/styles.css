@@ -1,0 +1,125 @@
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #262626;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #0095f6;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.landing-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    color: #ed4956;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    background-color: #fafafa;
+    font-size: 14px;
+    color: #262626;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #0095f6;
+    color: #fff;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0080f2;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.generated-hashtags {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.hashtag {
+    background-color: #f2f2f2;
+    color: #262626;
+    padding: 10px 16px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.copy-btn {
+    background-color: #0095f6;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.copy-btn:hover {
+    background-color: #0080f2;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form textarea {
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+}

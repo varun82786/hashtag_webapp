@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hashtag Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hashtag Generator</h1>
+        <form method="POST" action="{{ url_for('generator') }}">
+            <textarea name="hashtags" placeholder="Enter your hashtags (separated by commas)" required></textarea>
+            <input type="submit" value="Generate Hashtags" class="btn">
+        </form>
+        {% if hashtags %}
+        <div class="generated-hashtags">
+            {% for hashtag in hashtags %}
+            <div class="hashtag">{{ hashtag }}</div>
+            {% endfor %}
+            <button class="btn copy-btn">Copy Selected</button>
+        </div>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
