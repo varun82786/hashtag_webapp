@@ -6,9 +6,8 @@ import string
 app = Flask(__name__)
 
 # Define JSON file paths as global variables
-CREDENTIALS_JSON_PATH= r'hashtag_webapp\database\authorization\auth\auth.json'
-HASHTAG_JSON_PATH  = r'hashtag_webapp\database\source_data\street_photography\hashtagDB.json'
-
+CREDENTIALS_JSON_PATH= r'database/authorization/auth/auth.json'
+HASHTAG_JSON_PATH  = r'database/source_data/street_photography/hashtagDB.json'
 
 def generate_random_string(length):
     # Define the characters to choose from
