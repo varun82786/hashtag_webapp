@@ -1,3 +1,4 @@
+/* Add your custom styles here */
 body {
     background-color: #fafafa;
     font-family: Arial, sans-serif;
@@ -6,11 +7,17 @@ body {
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
     padding: 20px;
     text-align: center;
     box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 h1 {
@@ -33,13 +40,17 @@ h1 {
     text-transform: uppercase;
 }
 
+.counter {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .landing-buttons {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-content: center;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .error {
@@ -76,18 +87,27 @@ textarea {
     resize: none;
 }
 
-.generated-hashtags {
+.hashtag-list {
     margin-top: 20px;
     text-align: left;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hashtag {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     color: #262626;
-    padding: 10px 16px;
+    padding: 14px 24px; /* Larger padding for better visibility on smaller screens */
     border-radius: 3px;
     margin-bottom: 10px;
+    cursor: pointer;
     display: inline-block;
+    font-size: 18px; /* Larger font size for better visibility on smaller screens */
+}
+
+.hashtag.selected {
+    background-color: #109fed;
 }
 
 .copy-btn {
@@ -125,5 +145,10 @@ textarea {
 
     .btn {
         font-size: 12px;
+    }
+
+    .hashtag {
+        font-size: 16px; /* Adjusted font size for smaller screens */
+        padding: 12px 20px; /* Adjusted padding for smaller screens */
     }
 }

@@ -11,13 +11,30 @@
             <textarea name="hashtags" placeholder="Enter your hashtags (separated by commas)" required></textarea>
             <input type="submit" value="Generate Hashtags" class="btn">
         </form>
-        {% if hashtags %}
+        
+        {% if generated_hashtags %}
         <div class="generated-hashtags">
-            {% for hashtag in hashtags %}
-            <div class="hashtag">{{ hashtag }}</div>
-            {% endfor %}
-            <button class="btn copy-btn">Copy Selected</button>
+            <h2>Generated Hashtags:</h2>
+            <div class="hashtag-list">
+                {% for hashtag in generated_hashtags %}
+                <div class="hashtag" onclick="toggleSelection(this)">{{ hashtag }}</div>
+                {% endfor %}
+            </div>
         </div>
+
+        <div class="input-hashtags">
+            <h2>Input Hashtags:</h2>
+            <div class="hashtag-list">
+                {% for hashtag in input_hashtags %}
+                <div class="hashtag">{{ hashtag }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="counter">Selected hashtags: 0</div>
+        <button class="btn copy-btn" onclick="copySelectedHashtags()">Copy Selected</button>
+        {% else %}
+        <p>No matching hashtags found.</p>
         {% endif %}
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

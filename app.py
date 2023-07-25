@@ -112,13 +112,18 @@ def generator():
         input_hashtags = [tag.strip() for tag in hashtags.split(',')]
 
         # Generate hashtags based on input
-        for hashtag in input_hashtags:
-            if hashtag in hashtags_data:
-                generated_hashtags.append(hashtag)
-
-        return render_template('generator.html', generated_hashtags=generated_hashtags)
+        for input_tag in input_hashtags:
+            for data_tag in hashtags_data:
+                if input_tag.lower() in data_tag.lower() or data_tag.lower() in input_tag.lower():
+                    generated_hashtags.append(data_tag)
+                    #break  # Break out of inner loop if a match is found
+        #print(generated_hashtags)
+        if generated_hashtags:
+            return render_template('generator.html', input_hashtags=input_hashtags, generated_hashtags=generated_hashtags)
+        else:
+            return render_template('generator.html')
 
     return render_template('generator.html')
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+#if __name__ == '__main__':
+#     app.run(host="0.0.0.0",port=80,debug=True)
