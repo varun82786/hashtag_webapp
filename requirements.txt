@@ -5,7 +5,6 @@ certifi==2023.5.7
 click==8.1.6
 dnspython==2.4.0
 Flask==2.3.2
-gunicorn==21.2.0
 h11==0.14.0
 httpcore==0.17.3
 idna==3.4
@@ -16,3 +15,4 @@ packaging==23.1
 pymongo==4.4.1
 sniffio==1.3.0
 Werkzeug==2.3.6
+Gunicorn
