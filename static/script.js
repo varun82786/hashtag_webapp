@@ -65,7 +65,7 @@ function copySelectedHashtags() {
 
     let hashtagsText = '';
     selectedHashtags.forEach(function (hashtag) {
-        hashtagsText += "#"+hashtag.textContent + ' ';
+        hashtagsText += hashtag.textContent + ' ';
     });
 
     copyToClipboard(hashtagsText).then(function () {

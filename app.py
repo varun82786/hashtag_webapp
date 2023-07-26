@@ -115,7 +115,7 @@ def generator():
         for input_tag in input_hashtags:
             for data_tag in hashtags_data:
                 if input_tag.lower() in data_tag.lower() or data_tag.lower() in input_tag.lower():
-                    generated_hashtags.append(data_tag)
+                    generated_hashtags.append("#"+data_tag)
                     #break  # Break out of inner loop if a match is found
         #print(generated_hashtags)
         if generated_hashtags:
