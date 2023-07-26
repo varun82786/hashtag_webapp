@@ -57,7 +57,7 @@ def login():
             # Redirect to generator page
             return redirect(url_for('generator'))
 
-        # Authentication failed, show error message
+        # Authentication failed, show error message 
         return render_template('login.html', error='Invalid username or password.')
 
     return render_template('login.html')
