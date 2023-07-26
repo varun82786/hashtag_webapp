@@ -135,6 +135,9 @@ textarea {
     h1 {
         font-size: 24px;
     }
+    h6 {
+        font-size: 2px;
+    }
 
     form input[type="text"],
     form input[type="email"],
