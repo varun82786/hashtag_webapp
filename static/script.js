@@ -68,7 +68,7 @@ function copySelectedHashtags() {
         hashtagsText += hashtag.textContent + ' ';
     });
 
-    copyToClipboard(hashtagsText).then(function () {
+    /*copyToClipboard(hashtagsText).then(function () {
         alert('Selected hashtags copied to clipboard!');
         // Remove the selected class after copying
         selectedHashtags.forEach(function (hashtag) {
@@ -76,5 +76,5 @@ function copySelectedHashtags() {
         });
     }).catch(function (error) {
         console.error('Failed to copy hashtags: ', error);
-    });
+    });*/
 }
