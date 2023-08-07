@@ -1,6 +1,7 @@
 import json
 import random
 import string
+import bcrypt
 
 
 # Define JSON file paths as global variables
@@ -52,3 +53,15 @@ def generate_hashtags(input_hashtags, hashtags_data):
     random.shuffle(generated_hashtags)
 
     return generated_hashtags
+
+def hash_password(password):
+    # Generate a salt and hash the password
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed_password
+
+def is_password_valid(entered_password, stored_hashed_password):
+    # Check if the entered password matches the stored hashed password
+    return bcrypt.checkpw(entered_password.encode('utf-8'), stored_hashed_password)
+
+#print(load_hashtags_data())

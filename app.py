@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from scripts.operationsAPI import operationsAPI 
 from scripts.mongoAPI import mongoAPI
 
-
 app = Flask(__name__)
 
 # Landing page - Signup or Login
@@ -17,29 +16,26 @@ def landing():
 def signup():
     if request.method == 'POST':
         # Process signup form data and update credentials
-        credentials_data = operationsAPI.load_credentials_data()
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        #print(username)
+
         # Check if username or email already exists
-        if username in credentials_data or any(data.get('emailid') == email for data in credentials_data.values()):
+        if mongoAPI.auth_collection.count_documents({'$or': [{'username': username}, {'emailid': email}]}) > 0:
             return render_template('signup.html', error='Username or email already exists.')
 
         # Add new user credentials
-        user_id = operationsAPI.generate_random_string(10) 
-        user_no=str(len(credentials_data) + 1)
-        credentials_data[username] = {
+        user_id = operationsAPI.generate_random_string(10)
+        user_no = str(mongoAPI.auth_collection.count_documents({}) + 1)
+        credentials_data = {
             'unique_id': user_id,
-            'user_no'  : user_no,
-            'emailid'  : email,
-            'password' : password,
+            'username': username,
+            'user_no': int(user_no),
+            'emailid': email,
+            'password': operationsAPI.hash_password(password),
             'privilege': 'normal'
-            
         }
-        print(credentials_data)
-        # Update credentials JSON file
-        operationsAPI.update_credentials_data(credentials_data)
+        mongoAPI.auth_collection.insert_one(credentials_data)
 
         # Redirect to login page
         return redirect(url_for('login'))
@@ -54,9 +50,10 @@ def login():
         credentials_data = operationsAPI.load_credentials_data()
         username = request.form['username']
         password = request.form['password']
-
+        
+        user = mongoAPI.auth_collection.find_one({"username": username})
         # Check if username and password match
-        if username in credentials_data and credentials_data[username]['password'] == password:
+        if user and operationsAPI.is_password_valid(password,user['password']):
             # Redirect to generator page
             return redirect(url_for('generator'))
 
