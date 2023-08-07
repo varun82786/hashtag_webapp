@@ -16,3 +16,6 @@ pymongo
 sniffio
 Werkzeug
 Gunicorn
+bcrypt
+pymongo
+certifi
