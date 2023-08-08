@@ -47,7 +47,7 @@ def signup():
 def login():
     if request.method == 'POST':
         # Process login form data and authenticate user
-        credentials_data = operationsAPI.load_credentials_data()
+        #credentials_data = operationsAPI.load_credentials_data()
         username = request.form['username']
         password = request.form['password']
         
@@ -67,7 +67,9 @@ def login():
 def generator():
     if request.method == 'POST':
         # Process hashtag generation form data
-        hashtags_data = operationsAPI.load_hashtags_data()
+        #hashtags_data = operationsAPI.load_hashtags_data()
+        hashtags_data=[document["hashtag"] for document in mongoAPI.hashtag_collection.find({}, {"hashtag": 1})]
+        print(hashtags_data)
         hashtags = request.form['hashtags']
         generated_hashtags = []
 
