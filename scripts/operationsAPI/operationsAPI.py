@@ -2,7 +2,7 @@ import json
 import random
 import string
 import bcrypt
-
+import secrets
 
 # Define JSON file paths as global variables
 CREDENTIALS_JSON_PATH= r'database/authorization/auth/auth.json'
@@ -65,3 +65,7 @@ def is_password_valid(entered_password, stored_hashed_password):
     return bcrypt.checkpw(entered_password.encode('utf-8'), stored_hashed_password)
 
 #print(load_hashtags_data())
+
+def generate_secret_key(length=32):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(secrets.choice(characters) for _ in range(length))
