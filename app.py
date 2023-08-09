@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 #user defined libs
 from scripts.operationsAPI import operationsAPI 
@@ -6,8 +6,7 @@ from scripts.mongoAPI import mongoAPI
 
 app = Flask(__name__)
 
-# A variable to keep track of user authentication status
-authenticated = False
+app.secret_key = operationsAPI.generate_secret_key()  # Set a secret key for session management
 # Landing page - Signup or Login
 @app.route('/')
 def landing():
@@ -58,9 +57,9 @@ def login():
         user = mongoAPI.auth_collection.find_one({"username": username})
         # Check if username and password match
         if user and operationsAPI.is_password_valid(password,user['password']):
-            authenticated = True  # Set authenticated to True
+            session['username'] = username  # Store the username in the session
             # Redirect to generator page
-            return redirect(url_for('generator'))
+            return redirect(url_for('generator', username=username))
 
         # Authentication failed, show error message 
         return render_template('login.html', error='Invalid username or password.')
@@ -70,10 +69,9 @@ def login():
 # Generator page
 @app.route('/generator', methods=['GET', 'POST'])
 def generator():
-    global authenticated  # Use the global variable
-    print(authenticated)
-    if not authenticated:
-        return redirect(url_for('login'))  # Redirect to login if not authenticated
+    
+    if 'username' not in session:
+        return redirect(url_for('login'))  # Redirect to login if user is not authenticated
 
     if request.method == 'POST':
         # Process hashtag generation form data
