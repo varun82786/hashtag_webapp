@@ -6,6 +6,8 @@ from scripts.mongoAPI import mongoAPI
 
 app = Flask(__name__)
 
+# A variable to keep track of user authentication status
+authenticated = False
 # Landing page - Signup or Login
 @app.route('/')
 def landing():
@@ -45,6 +47,8 @@ def signup():
 # Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global authenticated  # Use the global variable
+
     if request.method == 'POST':
         # Process login form data and authenticate user
         #credentials_data = operationsAPI.load_credentials_data()
@@ -54,6 +58,7 @@ def login():
         user = mongoAPI.auth_collection.find_one({"username": username})
         # Check if username and password match
         if user and operationsAPI.is_password_valid(password,user['password']):
+            authenticated = True  # Set authenticated to True
             # Redirect to generator page
             return redirect(url_for('generator'))
 
@@ -65,11 +70,16 @@ def login():
 # Generator page
 @app.route('/generator', methods=['GET', 'POST'])
 def generator():
+    global authenticated  # Use the global variable
+    print(authenticated)
+    if not authenticated:
+        return redirect(url_for('login'))  # Redirect to login if not authenticated
+
     if request.method == 'POST':
         # Process hashtag generation form data
         #hashtags_data = operationsAPI.load_hashtags_data()
         hashtags_data=[document["hashtag"] for document in mongoAPI.hashtag_collection.find({}, {"hashtag": 1})]
-        print(hashtags_data)
+        
         hashtags = request.form['hashtags']
         generated_hashtags = []
 
@@ -87,4 +97,4 @@ def generator():
     return render_template('generator.html')
 
 if __name__ == '__main__':
-     app.run(host="0.0.0.0",port=80,debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
