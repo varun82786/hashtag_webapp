@@ -82,7 +82,7 @@ def generator():
         generated_hashtags = []
 
         # Split input into individual hashtags
-        input_hashtags = [tag.strip() for tag in hashtags.split(',')]
+        input_hashtags = operationsAPI.remove_empty_elements([tag.strip() for tag in hashtags.split(',')])
 
         # Generate hashtags based on input
         generated_hashtags = operationsAPI.generate_hashtags(input_hashtags,hashtags_data)
