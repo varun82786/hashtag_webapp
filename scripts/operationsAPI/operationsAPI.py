@@ -40,6 +40,10 @@ def update_credentials_data(credentials_data):
     with open(CREDENTIALS_JSON_PATH, 'w') as file:
         json.dump(existing_credentials_data, file, indent=4)
 
+## Remove empty elements in the list 
+def remove_empty_elements(input_list):
+    return [item for item in input_list if item]
+
 ## Generate hashtags based on input and return the random of the hashtag list    
 def generate_hashtags(input_hashtags, hashtags_data):
     generated_hashtags = []
