@@ -99,7 +99,7 @@ textarea {
     background-color: #ffffff;
     color: #262626;
     padding: 14px 24px; /* Larger padding for better visibility on smaller screens */
-    border-radius: 3px;
+    border-radius: 33px;
     margin-bottom: 10px;
     cursor: pointer;
     display: inline-block;
@@ -127,31 +127,29 @@ textarea {
 }
 
 /* Responsive Styles */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 480px) {
     .container {
-        padding: 10px;
+        padding: 5px;
     }
 
     h1 {
-        font-size: 24px;
-    }
-    h6 {
-        font-size: 2px;
+        font-size: 20px;
     }
 
     form input[type="text"],
     form input[type="email"],
     form input[type="password"],
     form textarea {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .btn {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .hashtag {
-        font-size: 16px; /* Adjusted font size for smaller screens */
-        padding: 12px 20px; /* Adjusted padding for smaller screens */
+        font-size: 14px;
+        padding: 8px 16px;
     }
 }
+
