@@ -1,7 +1,7 @@
 /* Add your custom styles here */
 body {
     background-color: #fafafa;
-    font-family: Arial, sans-serif;
+    font-family: monospace;
     margin: 0;
     padding: 0;
 }
@@ -9,26 +9,9 @@ body {
 .container {
     max-width: 100%;
     width: 100%;
-    padding: 17px;
+    padding: 20px; /* Keep a fixed padding for better readability */
     text-align: center;
     box-sizing: border-box;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    min-height: 100vh;
-    flex-wrap: wrap;
-    align-content: space-between;
-}
-
-.containercenter {
-    max-width: 100%;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    box-sizing: border-box;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -114,13 +97,12 @@ textarea {
 .hashtag {
     background-color: #ffffff;
     color: #262626;
-    padding: 14px 24px; /* Larger padding for better visibility on smaller screens */
+    padding: 14px 24px;
     border-radius: 33px;
     margin-bottom: 10px;
     cursor: pointer;
     display: inline-block;
-    font-size: 18px; /* Larger font size for better visibility on smaller screens */
-    font-weight: bold;
+    font-size: 18px;
 }
 
 .hashtag.selected {
@@ -142,31 +124,3 @@ textarea {
 .copy-btn:hover {
     background-color: #0080f2;
 }
-
-/* Responsive Styles */
-@media only screen and (max-width: 480px) {
-    .container {
-        padding: 5px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form textarea {
-        font-size: 10px;
-    }
-
-    .btn {
-        font-size: 10px;
-    }
-
-    .hashtag {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-}
-
