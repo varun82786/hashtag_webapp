@@ -15,6 +15,45 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /*align-items: center;*/
+    min-height: 100vh;
+}
+
+.container_landing {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px; /* Keep a fixed padding for better readability */
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container_login {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px; /* Keep a fixed padding for better readability */
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container_signup {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px; /* Keep a fixed padding for better readability */
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
@@ -90,7 +129,7 @@ textarea {
     margin-top: 20px;
     text-align: left;
     width: 100%;
-    max-width: 800px;
+    max-width: 98%;
     margin: 0 auto;
 }
 
