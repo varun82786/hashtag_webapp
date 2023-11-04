@@ -1,0 +1,156 @@
+/* Add your custom styles here */
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+    width: 100%;
+
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #262626;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #0095f6;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.counter {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.landing-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.error {
+    color: #ed4956;
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    background-color: #fafafa;
+    font-size: 14px;
+    color: #262626;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #0095f6;
+    color: #fff;
+}
+
+form input[type="submit"]:hover {
+    background-color: #00daf2;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.hashtag-list {
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hashtag {
+    background-color: #ffffff;
+    color: #262626;
+    padding: 14px 24px; /* Larger padding for better visibility on smaller screens */
+    border-radius: 33px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px; /* Larger font size for better visibility on smaller screens */
+}
+
+.hashtag.selected {
+    background-color: #109fed;
+}
+
+.copy-btn {
+    background-color: #0095f6;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.copy-btn:hover {
+    background-color: #0080f2;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form textarea {
+        font-size: 10px;
+    }
+
+    .btn {
+        font-size: 10px;
+    }
+
+    .hashtag {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
