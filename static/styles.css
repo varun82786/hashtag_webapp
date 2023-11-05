@@ -133,19 +133,19 @@ textarea {
     margin-top: 20px;
     text-align: left;
     width: 100%;
-    max-width: 98%;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 .hashtag {
     background-color: #ffffff;
-    color: #262626;
-    padding: 14px 24px;
+    color: #000000;
+    padding: 14px 12px;
     border-radius: 33px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     cursor: pointer;
     display: inline-block;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .hashtag.selected {
