@@ -6,13 +6,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hashtag Generator</h1>
+        <h2>Hashtag Generator</h2>
         <form method="POST" action="{{ url_for('generator') }}">
             <textarea name="hashtags" placeholder="Enter your keywords (separated by space eg: travel street landscape)" required></textarea>
             <input type="submit" value="Generate Hashtags" class="btn">
         </form>
         
         {% if generated_hashtags %}
+
+        <div class="input-hashtags">
+            <h2>Input Keywords:</h2>
+            <div class="hashtag-list">
+                {% for hashtag in input_hashtags %}
+                <div class="hashtag">{{ hashtag }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
         <div class="generated-hashtags">
             <h2>Generated Hashtags:</h2>
             <div class="hashtag-list">
@@ -22,21 +32,14 @@
             </div>
         </div>
 
-        <div class="input-hashtags">
-            <h2>Input Hashtags:</h2>
-            <div class="hashtag-list">
-                {% for hashtag in input_hashtags %}
-                <div class="hashtag">{{ hashtag }}</div>
-                {% endfor %}
-            </div>
-        </div>
+
         
         <div class="counter">Selected hashtags: 0</div>
         <button class="btn copy-btn" onclick="copySelectedHashtags()">Copy Selected</button>
         {% else %}
         <p>No matching hashtags found.</p>
         {% endif %}
-        <h6>"Crafted with passion by cruising_bug"</h6>
+        <h5>"Crafted with passion by cruising_bug"</h5>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
