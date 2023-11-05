@@ -14,9 +14,10 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     /*align-items: center;*/
     min-height: 100vh;
+    background-color: #b2d4ff
 }
 
 .container_landing {
@@ -27,9 +28,10 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    background-color: #b2d4ff
 }
 
 .container_login {
@@ -40,9 +42,10 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    background-color: #b2d4ff
 }
 
 .container_signup {
@@ -53,9 +56,10 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    background-color: #b2d4ff
 }
 
 h1 {
@@ -117,7 +121,7 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #00daf2;
+    background-color: #1e7fbe;
 }
 
 textarea {
@@ -145,7 +149,7 @@ textarea {
 }
 
 .hashtag.selected {
-    background-color: #109fed;
+    background-color: #8ba9d4;
 }
 
 .copy-btn {
