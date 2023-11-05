@@ -56,7 +56,7 @@ def generate_hashtags(input_hashtags, hashtags_data):
     # Shuffle the generated hashtags randomly
     random.shuffle(generated_hashtags)
 
-    return generated_hashtags
+    return set(generated_hashtags)
 
 def hash_password(password):
     # Generate a salt and hash the password
