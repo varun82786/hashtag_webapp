@@ -1,4 +1,7 @@
-from scripts.mongoAPI import mongodb_init 
+import sys
+sys.path.append(r'scripts')
+
+from mongoAPI import mongodb_init 
 import bcrypt
 
 Client = mongodb_init.server_check()
@@ -78,6 +81,14 @@ def delete_document(collection, filter_query):
     except Exception as e:
         print("Error deleting document:", e)
 
+def doc_details(collection= hashtag_collection,hashtag="None"):
+    result = collection.find_one({"hashtag": hashtag}, {"category": 1, "gener": 1, "location": 1, "parameters": 1})
+    print(result)
+    return result
 
+# lis = ["skyphotography", "worldphotographyday" ,"ballaratphoto" ,"officialphotographyhub" ,"traveldiary" ,"thephotographyblogger"  ]
+
+# for hash in lis:
+#     print(doc_details(hashtag_collection,hash))
 
 #read_documents(auth_collection)
