@@ -148,6 +148,11 @@ textarea {
     font-size: 20px;
 }
 
+.button-number {
+    color: #838383;
+}
+
+
 .hashtag.selected {
     background-color: #8ba9d4;
 }

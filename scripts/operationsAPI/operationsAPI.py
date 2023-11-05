@@ -4,6 +4,10 @@ import string
 import bcrypt
 import secrets
 
+import sys
+sys.path.append(r'scripts')
+from mongoAPI import mongoAPI
+
 # Define JSON file paths as global variables
 CREDENTIALS_JSON_PATH= r'database/authorization/auth/auth.json'
 HASHTAG_JSON_PATH  = r'database/source_data/street_photography/hashtagDB.json'
@@ -51,7 +55,11 @@ def generate_hashtags(input_hashtags, hashtags_data):
     for input_tag in input_hashtags:
         for data_tag in hashtags_data:
             if input_tag.lower() in data_tag.lower():
-                generated_hashtags.append("#" + data_tag)
+                hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection,data_tag)
+                Parameter = hashtag_details.get("parameters")
+                occurrence = Parameter[0]
+                hashtag_string = f'#{data_tag} {occurrence}'
+                generated_hashtags.append(hashtag_string)
 
     # Shuffle the generated hashtags randomly
     random.shuffle(generated_hashtags)
@@ -73,3 +81,9 @@ def is_password_valid(entered_password, stored_hashed_password):
 def generate_secret_key(length=32):
     characters = string.ascii_letters + string.digits + string.punctuation
     return ''.join(secrets.choice(characters) for _ in range(length))
+
+
+# lis = ["skyphotography", "worldphotographyday" ,"ballaratphoto" ,"officialphotographyhub" ,"traveldiary" ,"thephotographyblogger"  ]
+
+# for hash in lis:
+#     generate_hashtags()
