@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let hashtagsText = '';
         selectedHashtags.forEach(function (hashtag) {
-            hashtagsText += hashtag.textContent + ' ';
+            hashtagsText += extractFirstPart(hashtag.textContent) + ' ';
         });
 
-        if (selectedHashtags.length >= 30) {
+        if (selectedHashtags.length > 30) {
             alert('Instagram allows only 30 hashtags. Please select 30 or fewer hashtags.');
             return;
         }
@@ -77,4 +77,17 @@ function copySelectedHashtags() {
     }).catch(function (error) {
         console.error('Failed to copy hashtags: ', error);
     });*/
+}
+
+function extractFirstPart(inputString) {
+    // Use the split method to split the inputString by space
+    const parts = inputString.split(' ');
+    
+    // Check if there are parts, and return the first part (index 0)
+    if (parts.length > 0) {
+        return parts[0];
+    } else {
+        // Return an empty string if there are no parts
+        return '';
+    }
 }
