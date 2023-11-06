@@ -56,8 +56,8 @@ def generate_hashtags(input_hashtags, hashtags_data):
         for data_tag in hashtags_data:
             if input_tag.lower() in data_tag.lower():
                 hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection,data_tag)
-                Parameter = hashtag_details.get("parameters")
-                occurrence = Parameter[0]
+                occurrence = hashtag_details.get("parameters")[0]
+                #occurrence = Parameter[0]
                 hashtag_string = f'#{data_tag} {occurrence}'
                 generated_hashtags.append(hashtag_string)
 

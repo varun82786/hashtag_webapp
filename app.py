@@ -6,6 +6,8 @@ from scripts.mongoAPI import mongoAPI
 
 app = Flask(__name__)
 
+app.config['TIMEOUT'] = 240  # Set the timeout to 120 seconds
+
 app.secret_key = operationsAPI.generate_secret_key()  # Set a secret key for session management
 # Landing page - Signup or Login
 @app.route('/')
