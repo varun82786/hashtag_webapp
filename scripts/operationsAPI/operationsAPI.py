@@ -53,35 +53,25 @@ def generate_hashtags(input_hashtags, hashtags_data):
     # Convert input hashtags to a set for faster membership checking
     input_hashtags_set = {input_tag.lower() for input_tag in input_hashtags}
     
-    # Create lists to store hashtags that match input hashtags in both directions
-    matching_hashtags = []
-    
-    for input_tag in input_hashtags:
+    # Create a generator function to yield hashtags one at a time in both directions
+    def generate_bidirectional_hashtags():
         for data_tag in hashtags_data:
-            if input_tag.lower() in data_tag.lower():
-                matching_hashtags.append(data_tag)
+            if data_tag.lower() in input_hashtags_set:
+                print(f"Fetching details for {data_tag}")
+                hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection, data_tag)
+                occurrence = hashtag_details.get("parameters")[0]
+                yield f'#{data_tag} {occurrence}'
+        for input_tag in input_hashtags:
+            for data_tag in hashtags_data:
+                if input_tag.lower() in data_tag.lower():
+                    print(f"Fetching details for {data_tag}")
+                    hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection, data_tag)
+                    occurrence = hashtag_details.get("parameters")[0]
+                    yield f'#{data_tag} {occurrence}'
 
-    # Fetch details for the selected matching data tags
-    hashtag_details_dict = {}
-    for data_tag in matching_hashtags:
-        print(f"Fetching details for {data_tag}")
-        hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection, data_tag)
-        occurrence = hashtag_details.get("parameters")[0]
-        hashtag_details_dict[data_tag] = (data_tag, occurrence)
-
-    generated_hashtags = []
-
-    for data_tag in matching_hashtags:
-        tag, occurrence = hashtag_details_dict[data_tag]
-        hashtag_string = f'#{tag} {occurrence}'
-        generated_hashtags.append(hashtag_string)
-
-    print("Generated hashtags:", generated_hashtags)
-
-    # Shuffle the generated hashtags randomly
+    # Shuffle and yield generated hashtags one at a time
+    generated_hashtags = list(generate_bidirectional_hashtags())
     random.shuffle(generated_hashtags)
-    
-    print("Shuffled hashtags:", generated_hashtags)
 
     return set(generated_hashtags)
 
