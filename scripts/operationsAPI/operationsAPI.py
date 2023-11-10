@@ -49,28 +49,20 @@ def remove_empty_elements(input_list):
     return [item for item in input_list if item]
 
 ## Generate hashtags based on input and return the random of the hashtag list    
-def generate_hashtags(input_hashtags, hashtags_data):
-    # Convert input hashtags to a set for faster membership checking
-    input_hashtags_set = {input_tag.lower() for input_tag in input_hashtags}
+def generate_hashtags(input_hashtags, hashtags_data, parameter_data):
+    generated_hashtags = []
     
-    # Create a generator function to yield hashtags one at a time in both directions
-    def generate_bidirectional_hashtags():
+    for input_tag in input_hashtags:
         for data_tag in hashtags_data:
-            if data_tag.lower() in input_hashtags_set:
-                print(f"Fetching details for {data_tag}")
-                hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection, data_tag)
-                occurrence = hashtag_details.get("parameters")[0]
-                yield f'#{data_tag} {occurrence}'
-        for input_tag in input_hashtags:
-            for data_tag in hashtags_data:
-                if input_tag.lower() in data_tag.lower():
-                    print(f"Fetching details for {data_tag}")
-                    hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection, data_tag)
-                    occurrence = hashtag_details.get("parameters")[0]
-                    yield f'#{data_tag} {occurrence}'
+            if input_tag.lower() in data_tag.lower():
+                
+                #generated_hashtags.append("#" + data_tag )
+                #Parameter = hashtag_details.get("parameters")
+                occurrence = parameter_data[hashtags_data.index(data_tag)][0]
+                hashtag_string = f'#{data_tag} {occurrence}'
+                generated_hashtags.append(hashtag_string)
 
-    # Shuffle and yield generated hashtags one at a time
-    generated_hashtags = list(generate_bidirectional_hashtags())
+    # Shuffle the generated hashtags randomly
     random.shuffle(generated_hashtags)
 
     return set(generated_hashtags)
