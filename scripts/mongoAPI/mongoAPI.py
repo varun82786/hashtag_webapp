@@ -83,7 +83,7 @@ def delete_document(collection, filter_query):
 
 def doc_details(collection= hashtag_collection,hashtag="None"):
     result = collection.find_one({"hashtag": hashtag}, {"category": 1, "gener": 1, "location": 1, "parameters": 1})
-    print(result)
+    #print(result)
     return result
 
 # lis = ["skyphotography", "worldphotographyday" ,"ballaratphoto" ,"officialphotographyhub" ,"traveldiary" ,"thephotographyblogger"  ]

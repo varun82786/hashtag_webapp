@@ -3,7 +3,7 @@ import random
 import string
 import bcrypt
 import secrets
-
+import time
 import sys
 sys.path.append(r'scripts')
 from mongoAPI import mongoAPI
@@ -49,15 +49,16 @@ def remove_empty_elements(input_list):
     return [item for item in input_list if item]
 
 ## Generate hashtags based on input and return the random of the hashtag list    
-def generate_hashtags(input_hashtags, hashtags_data):
+def generate_hashtags(input_hashtags, hashtags_data, parameter_data):
     generated_hashtags = []
-
+    
     for input_tag in input_hashtags:
         for data_tag in hashtags_data:
             if input_tag.lower() in data_tag.lower():
-                hashtag_details = mongoAPI.doc_details(mongoAPI.hashtag_collection,data_tag)
-                Parameter = hashtag_details.get("parameters")
-                occurrence = Parameter[0]
+                
+                #generated_hashtags.append("#" + data_tag )
+                #Parameter = hashtag_details.get("parameters")
+                occurrence = parameter_data[hashtags_data.index(data_tag)][0]
                 hashtag_string = f'#{data_tag} {occurrence}'
                 generated_hashtags.append(hashtag_string)
 
