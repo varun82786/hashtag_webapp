@@ -6,6 +6,8 @@ from scripts.mongoAPI import mongoAPI
 
 app = Flask(__name__)
 
+app.config['TIMEOUT'] = 240  # Set the timeout to 120 seconds
+
 app.secret_key = operationsAPI.generate_secret_key()  # Set a secret key for session management
 # Landing page - Signup or Login
 @app.route('/')
@@ -76,8 +78,15 @@ def generator():
     if request.method == 'POST':
         # Process hashtag generation form data
         #hashtags_data = operationsAPI.load_hashtags_data()
-        hashtags_data=[document["hashtag"] for document in mongoAPI.hashtag_collection.find({}, {"hashtag": 1})]
-        
+        #hashtags_data=[document["hashtag"] for document in mongoAPI.hashtag_collection.find({}, {"hashtag": 1, "parameters": 1})]
+        data_basedocument = mongoAPI.hashtag_collection.find({}, {"hashtag": 1, "parameters": 1})
+
+        hashtags_data = []
+        parameter_data = []
+
+        for document in data_basedocument:
+            hashtags_data.append(document["hashtag"])
+            parameter_data.append(document["parameters"])        
         hashtags = request.form['hashtags']
         generated_hashtags = []
 
@@ -85,7 +94,7 @@ def generator():
         input_hashtags = operationsAPI.remove_empty_elements([tag.strip() for tag in hashtags.split(' ')])
 
         # Generate hashtags based on input
-        generated_hashtags = operationsAPI.generate_hashtags(input_hashtags,hashtags_data)
+        generated_hashtags = operationsAPI.generate_hashtags(input_hashtags,hashtags_data, parameter_data)
         
         if generated_hashtags:
             return render_template('generator.html', input_hashtags=input_hashtags, generated_hashtags=generated_hashtags)
