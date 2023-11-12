@@ -104,7 +104,8 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"],
 form textarea {
-    width: 100%;
+    width: 96%;
+    height: auto;
     padding: 12px 16px;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
