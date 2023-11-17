@@ -7,6 +7,7 @@ import time
 import sys
 sys.path.append(r'scripts')
 from mongoAPI import mongoAPI
+from operationsAPI.math_calc import *
 
 # Define JSON file paths as global variables
 CREDENTIALS_JSON_PATH= r'database/authorization/auth/auth.json'
@@ -59,7 +60,8 @@ def generate_hashtags(input_hashtags, hashtags_data, parameter_data):
                 #generated_hashtags.append("#" + data_tag )
                 #Parameter = hashtag_details.get("parameters")
                 occurrence = parameter_data[hashtags_data.index(data_tag)][0]
-                hashtag_string = f'#{data_tag} {occurrence}'
+                #1000 is scalling constant
+                hashtag_string = f'#{data_tag} {format_number(occurrence * 1000)}'
                 generated_hashtags.append(hashtag_string)
 
     # Shuffle the generated hashtags randomly
