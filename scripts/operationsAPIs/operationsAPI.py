@@ -7,7 +7,8 @@ import time
 import sys
 sys.path.append(r'scripts')
 from mongoAPI import mongoAPI
-from operationsAPI.math_calc import *
+from operationsAPIs.math_calc import *
+from operationsAPIs.algos import *
 
 # Define JSON file paths as global variables
 CREDENTIALS_JSON_PATH= r'database/authorization/auth/auth.json'
@@ -50,8 +51,10 @@ def remove_empty_elements(input_list):
     return [item for item in input_list if item]
 
 ## Generate hashtags based on input and return the random of the hashtag list    
-def generate_hashtags(input_hashtags, hashtags_data, parameter_data):
+def generate_hashtags(input_hashtags, hashtags_data, parameter_data, gener_data):
     generated_hashtags = []
+    gener_generated_hashtags =[]
+    hashtags_gen = set()
     
     for input_tag in input_hashtags:
         for data_tag in hashtags_data:
@@ -59,15 +62,27 @@ def generate_hashtags(input_hashtags, hashtags_data, parameter_data):
                 
                 #generated_hashtags.append("#" + data_tag )
                 #Parameter = hashtag_details.get("parameters")
+                hashtags_gen.add(data_tag)
                 occurrence = parameter_data[hashtags_data.index(data_tag)][0]
                 #1000 is scalling constant
                 hashtag_string = f'#{data_tag} {format_number(occurrence * 1000)}'
                 generated_hashtags.append(hashtag_string)
+                
+    extra_hashtags = gener_hashtags(hashtags_gen, parameter_data, hashtags_data, gener_data)
+    #print(extra_hashtags)
+    
+    for hashtag in extra_hashtags:
+        
+        occurrence = parameter_data[hashtags_data.index(hashtag)][0]
+        #1000 is scalling constant
+        hashtag_string = f'#{hashtag} {format_number(occurrence * 1000)}'
+        gener_generated_hashtags.append(hashtag_string) 
+        
 
     # Shuffle the generated hashtags randomly
     random.shuffle(generated_hashtags)
 
-    return set(generated_hashtags)
+    return set(generated_hashtags) , set(gener_generated_hashtags)
 
 def hash_password(password):
     # Generate a salt and hash the password
