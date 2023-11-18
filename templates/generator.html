@@ -30,6 +30,13 @@
                 <div class="hashtag" onclick="toggleSelection(this)">{{ hashtag.split(' ')[0] }} <span class="button-number">{{ hashtag.split(' ')[1] }}</span></div>
                 {% endfor %}
             </div>
+
+            <h2>Related Hashtags:</h2>
+            <div class="hashtag-list">
+                {% for hashtag in gener_generated_hashtags %}
+                <div class="hashtag" onclick="toggleSelection(this)">{{ hashtag.split(' ')[0] }} <span class="button-number">{{ hashtag.split(' ')[1] }}</span></div>
+                {% endfor %}
+            </div>
         </div>
 
 

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 
 #user defined libs
-from scripts.operationsAPI import operationsAPI 
+from scripts.operationsAPIs import operationsAPI 
 from scripts.mongoAPI import mongoAPI
 
 app = Flask(__name__)
@@ -73,20 +73,23 @@ def login():
 def generator():
     
     if 'username' not in session:
-        return redirect(url_for('login'))  # Redirect to login if user is not authenticated
+        return redirect(url_for('landing'))  # Redirect to login if user is not authenticated
 
     if request.method == 'POST':
         # Process hashtag generation form data
         #hashtags_data = operationsAPI.load_hashtags_data()
         #hashtags_data=[document["hashtag"] for document in mongoAPI.hashtag_collection.find({}, {"hashtag": 1, "parameters": 1})]
-        data_basedocument = mongoAPI.hashtag_collection.find({}, {"hashtag": 1, "parameters": 1})
+        data_basedocument = mongoAPI.hashtag_collection.find({}, {"hashtag": 1, "parameters": 1, "gener": 1})
 
         hashtags_data = []
         parameter_data = []
+        gener_data = []
 
         for document in data_basedocument:
             hashtags_data.append(document["hashtag"])
-            parameter_data.append(document["parameters"])        
+            parameter_data.append(document["parameters"])
+            gener_data.append(document["gener"])
+                    
         hashtags = request.form['hashtags']
         generated_hashtags = []
 
@@ -94,10 +97,12 @@ def generator():
         input_hashtags = operationsAPI.remove_empty_elements([tag.strip() for tag in hashtags.split(' ')])
 
         # Generate hashtags based on input
-        generated_hashtags = operationsAPI.generate_hashtags(input_hashtags,hashtags_data, parameter_data)
+        generated_tags =  operationsAPI.generate_hashtags(input_hashtags,hashtags_data, parameter_data, gener_data)
+        generated_hashtags = generated_tags[0]
+        gener_generated_hashtags = generated_tags[1]
         
         if generated_hashtags:
-            return render_template('generator.html', input_hashtags=input_hashtags, generated_hashtags=generated_hashtags)
+            return render_template('generator.html', input_hashtags = input_hashtags, generated_hashtags = generated_hashtags, gener_generated_hashtags = gener_generated_hashtags)
         else:
             return render_template('generator.html')
 
