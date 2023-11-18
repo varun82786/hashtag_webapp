@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        let hashtagsText = '';
-        selectedHashtags.forEach(function (hashtag) {
-            hashtagsText += extractFirstPart(hashtag.textContent) + ' ';
+        let hashtagsArray = Array.from(selectedHashtags).map(function (hashtag) {
+            return extractFirstPart(hashtag.textContent);
         });
 
         if (selectedHashtags.length > 30) {
@@ -17,9 +16,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Your new string to insert
+        const newString = "#cruisingbug";
+
+        // Generate a random index
+        const randomIndex = Math.floor(Math.random() * (hashtagsArray.length + 1));
+
+        // Insert the new string at the random index
+        hashtagsArray.splice(randomIndex, 0, newString);
+
+        // Join the array back into a string
+        const hashtagsText = hashtagsArray.join(' ');
+
         copyToClipboard(hashtagsText).then(function () {
             alert('Selected hashtags copied to clipboard!');
-            // Remove the selected class after copying
             selectedHashtags.forEach(function (hashtag) {
                 hashtag.classList.remove('selected');
             });
@@ -28,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 
 function toggleSelection(hashtag) {
     hashtag.classList.toggle('selected');
