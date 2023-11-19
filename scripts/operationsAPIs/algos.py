@@ -54,26 +54,15 @@ def gener_hashtags(hashtags_gen, parameter_data, hashtags_data, gener_data):
     #print("\nidxs -",idxs)
     
     for idx in idxs:
-        if parameter_data[idx][0] >10:
-           hashtags_req.append(hashtags_data[idx])
+        hashtag = hashtags_data[idx]
+        if hashtag not in hashtags_gen:
+            if parameter_data[idx][0] >10:
+               hashtags_req.append(hashtag)
+               
     #print("\nhashtags_req- ",hashtags_req)
             
     # print(gener_list)
     # print(geners)
     # print(hashtags_req)
-    
-            
-            
+       
     return hashtags_req
-            
-            
-        
-    
-        
-    
-
-    
-        
-        
-    
-    
