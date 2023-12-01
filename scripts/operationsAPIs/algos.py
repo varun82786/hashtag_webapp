@@ -1,3 +1,5 @@
+import requests
+
 # All the complex operations will be performed here
 
 def get_top_keys(dictionary, top_n=1):
@@ -66,3 +68,40 @@ def gener_hashtags(hashtags_gen, parameter_data, hashtags_data, gener_data):
     # print(hashtags_req)
        
     return hashtags_req
+
+
+def get_related_words(word):
+    base_url = "https://api.datamuse.com/words"
+    params = {"ml": word}  # 'ml' stands for means like (related words)
+
+    try:
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()  # Check if the request was successful
+
+        data = response.json()
+        #print(data)
+        # Sort the related words based on their scores (relevance)
+        related_words = sorted(data, key=lambda x: x.get("score",0), reverse=True)
+        related_words = [entry["word"] for entry in related_words]
+
+        return related_words
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return []
+    
+def get_synonyms(word):
+    base_url = "https://api.datamuse.com/words"
+    params = {"rel_syn": word}  # 'rel_syn' stands for related synonym
+
+    try:
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()  # Check if the request was successful
+
+        data = response.json()
+        #print(data)
+        synonyms = [entry["word"] for entry in data]
+
+        return synonyms
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return []
