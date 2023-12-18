@@ -57,12 +57,12 @@ def generate_hashtags(input_hashtags, hashtags_data, parameter_data, gener_data)
     hashtags_gen = set()
     synonymic_keywords = []
     
-    for keyword in input_hashtags:
-        synonymic_keywords.append(get_synonyms(keyword))
+    # for keyword in input_hashtags:
+    #     synonymic_keywords.append(get_synonyms(keyword))
     
-    #adding the synonymic keywords to input list
-    for sublist in synonymic_keywords:
-        input_hashtags.extend(sublist)
+    # #adding the synonymic keywords to input list
+    # for sublist in synonymic_keywords:
+    #     input_hashtags.extend(sublist)
     
     for input_tag in input_hashtags:
         for data_tag in hashtags_data:
