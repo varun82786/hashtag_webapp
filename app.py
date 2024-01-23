@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['TIMEOUT'] = 240  # Set the timeout to 120 seconds
 
 app.secret_key = operationsAPI.generate_secret_key()  # Set a secret key for session management
+"""
 # Landing page - Signup or Login
 @app.route('/')
 def landing():
@@ -67,14 +68,15 @@ def login():
         return render_template('login.html', error='Invalid username or password.')
 
     return render_template('login.html')
+"""
 
 # Generator page
 @app.route('/generator', methods=['GET', 'POST'])
 def generator():
-    
+    """
     if 'username' not in session:
         return redirect(url_for('landing'))  # Redirect to login if user is not authenticated
-
+    """
     if request.method == 'POST':
         # Process hashtag generation form data
         #hashtags_data = operationsAPI.load_hashtags_data()
