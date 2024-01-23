@@ -71,7 +71,7 @@ def login():
 """
 
 # Generator page
-@app.route('/generator', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def generator():
     """
     if 'username' not in session:
