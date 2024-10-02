@@ -8,7 +8,7 @@ Client = mongodb_init.server_check()
 
 # Replace "your_collection_name" with the name of your desired collection
 auth_collection = Client["eager"]["auth"]
-hashtag_collection = Client["eager"]["hashtag_dev2"]
+hashtag_collection = Client["eager"]["hashtags"]
 
 
 

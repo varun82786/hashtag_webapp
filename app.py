@@ -101,10 +101,10 @@ def generator():
         # Generate hashtags based on input
         generated_tags =  operationsAPI.generate_hashtags(input_hashtags,hashtags_data, parameter_data, gener_data)
         generated_hashtags = generated_tags[0]
-        #gener_generated_hashtags = generated_tags[1]
+        gener_generated_hashtags = generated_tags[1]
         
         if generated_hashtags:
-            return render_template('generator.html', input_hashtags = input_hashtags, generated_hashtags = generated_hashtags)#, gener_generated_hashtags = gener_generated_hashtags)
+            return render_template('generator.html', input_hashtags = input_hashtags, generated_hashtags = generated_hashtags, gener_generated_hashtags = gener_generated_hashtags)
         else:
             return render_template('generator.html')
     #to check webhook 3
