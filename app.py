@@ -107,7 +107,7 @@ def generator():
             return render_template('generator.html', input_hashtags = input_hashtags, generated_hashtags = generated_hashtags)#, gener_generated_hashtags = gener_generated_hashtags)
         else:
             return render_template('generator.html')
-    #to check webhook 4
+    #to check webhook 4 trail on rpi with service
     return render_template('generator.html')
 
 if __name__ == '__main__':
