@@ -14,6 +14,6 @@ MarkupSafe==2.1.5
 packaging==24.0
 pymongo==4.7.2
 requests==2.32.1
-urllib3==2.2.1
+urllib3==2.2.2
 Werkzeug==3.0.3
 zipp==3.18.2
